@@ -5,12 +5,12 @@ import java.util.Map;
 
 public class State {
 
-	private Map<String, String> transitionMap;
+	private Map<String, State> transitionMap;
 	private String name;
 	private long id;
 	
 	public State() {
-		transitionMap = new HashMap<String, String>();
+		transitionMap = new HashMap<String, State>();
 	}
 	
 	public long getId() {
@@ -29,20 +29,20 @@ public class State {
 		this.name = name;
 	}
 
-	public Map<String, String> getAcceptedTransitions() {
+	public Map<String, State> getAcceptedTransitions() {
 		return transitionMap;
 	}
 
-	public void setTransitionMap(Map<String, String> acceptedTransitions) {
+	public void setTransitionMap(Map<String, State> acceptedTransitions) {
 		this.transitionMap = acceptedTransitions;
 	}
 
 	/**
 	 * Returns the state that results from this transition from this state
-	 * @param transition
-	 * @return the name of the next state or null if the transition is not valid for this state
+	 * @param the name of the transition
+	 * @return the next state or null if the transition is not valid for this state
 	 */
-	public String nextState(String transitionName) {
+	public State nextState(String transitionName) {
 		return transitionMap.get(transitionName);
 	}
 	

@@ -33,22 +33,22 @@ public class TaskLifeCycleManager {
 	 * @param stateTransition
 	 * @return null if the transition fails ant the the modified task if it succeeds.
 	 */
-	public Task transition(Task task, Transition transition) throws TransitionException {
-		if(task.getState().nextState(transition.getName()) == null) {
-			throw new TransitionException("The state of the task does not accept the transition: " + transition.getName());
+	public void transition(Task task, String transition) throws TransitionException {
+		if(task.getState().nextState(transition) == null) {
+			throw new TransitionException("The state of the task does not accept the transition: " + transition);
 		}
 		
 		for (TaskObserver taskObserver : taskObservers) {
 			taskObserver.preTransition(task, transition);
 		}
 		
-		task = transition.perform(task);
+		State nextState = task.getState().nextState(transition);
+		task.setState(nextState);
 		
 		for (TaskObserver taskObserver : taskObservers) {
 			taskObserver.posTransition(task, transition);
 		}
 		
-		return task;
 	}
 	
 	private static TaskLifeCycleManager singleton = null;

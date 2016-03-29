@@ -9,6 +9,6 @@ public abstract class Transition {
 	 */
 	public abstract String getName();
 	
-	public abstract Task perform(Task task);
+	public abstract void perform(Task task);
 	
 }
