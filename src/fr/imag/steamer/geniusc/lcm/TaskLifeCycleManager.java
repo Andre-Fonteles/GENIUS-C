@@ -1,4 +1,4 @@
-package fr.imag.steamer.geniusc.lifecyclemanager;
+package fr.imag.steamer.geniusc.lcm;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,22 +33,24 @@ public class TaskLifeCycleManager {
 	 * @param stateTransition
 	 * @return null if the transition fails ant the the modified task if it succeeds.
 	 */
-	public void transition(Task task, String transition) throws TransitionException {
-		if(task.getState().nextState(transition) == null) {
-			throw new TransitionException("The state of the task does not accept the transition: " + transition);
+	public Task transition(Task task, Action action) throws ActionException {
+		if(task.getState().nextStateName(action) == null) {
+			throw new ActionException("Task state " + task.getState().getName() + " does not accept action: " + action.getClass().getName());
 		}
 		
 		for (TaskObserver taskObserver : taskObservers) {
-			taskObserver.preTransition(task, transition);
+			taskObserver.preAction(task, action);
 		}
 		
-		State nextState = task.getState().nextState(transition);
+		State nextState = task.getState().nextStateName(action);
 		task.setState(nextState);
+		action.perform();
 		
 		for (TaskObserver taskObserver : taskObservers) {
-			taskObserver.posTransition(task, transition);
+			taskObserver.posAction(task, action);
 		}
 		
+		return task;
 	}
 	
 	private static TaskLifeCycleManager singleton = null;

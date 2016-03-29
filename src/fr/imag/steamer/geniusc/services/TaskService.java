@@ -3,7 +3,7 @@ package fr.imag.steamer.geniusc.services;
 import java.util.List;
 
 import fr.imag.steamer.geniusc.entity.Task;
-import fr.imag.steamer.geniusc.lifecyclemanager.TransitionException;
+import fr.imag.steamer.geniusc.lcm.ActionException;
 
 public interface TaskService {
 
@@ -12,9 +12,9 @@ public interface TaskService {
 	 * @param task the new task to be published
 	 * @return the new task published
 	 */
-	public Task publishTask(Task task) throws TransitionException;
-	public Task deleteTask(Task task) throws TransitionException;
-	public Task updateTask(Task task);
+	public Task publishTask(Task task) throws ActionException;
+	public Task deleteTask(Task task) throws ActionException;
+	public Task updateTask(Task task) throws ActionException ;
 	public List<Task> getAllTasks();
 	
 }

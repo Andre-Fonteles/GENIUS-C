@@ -1,6 +1,6 @@
 package fr.imag.steamer.geniusc.entity;
 
-import fr.imag.steamer.geniusc.lifecyclemanager.State;
+import fr.imag.steamer.geniusc.lcm.State;
 
 public abstract class Task {
 
