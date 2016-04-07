@@ -2,10 +2,10 @@ package fr.imag.steamer.geniusc.entity;
 
 public abstract class User {
 	
-	public long id;
+	private long id;
 
-	public String firstName;
-	public String lastName;
+	private String firstName;
+	private String lastName;
 	
 	public long getId() {
 		return id;
