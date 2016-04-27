@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface MatchingAlgorithm <Item1, Item2> {
 
-	public List<Item1> generateList(List<Item1> items1, Item2 item2);
+	public List<Item2> generateList(Item1 items1, List<Item2> availableItens2, List<Item2> trainingSet);
 
 }
