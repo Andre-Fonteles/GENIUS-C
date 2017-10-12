@@ -10,5 +10,6 @@ public interface UserRepository {
 	public void deleteUser(User user);
 	public void updateUser(User user);
 	public List<User> getAllUsers();
+	public User findById(long userId);
 	
 }

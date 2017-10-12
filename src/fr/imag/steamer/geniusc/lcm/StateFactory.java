@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface StateFactory {
 	
-	public List<String> getStateNames(String name);
+	public List<String> getStateNames();
 	public State getState(String name);
 	
 }

@@ -26,8 +26,6 @@ public class TaskLifeCycleManager {
 	}
 	
 	/**
-	 */
-	/**
 	 * Attempts to transition from the task's current state to a new one (according to the object stateTransiction).
 	 * @param task
 	 * @param stateTransition
@@ -44,7 +42,7 @@ public class TaskLifeCycleManager {
 		
 		State nextState = task.getState().nextStateName(action);
 		task.setState(nextState);
-		action.perform();
+		task = action.perform();
 		
 		for (TaskObserver taskObserver : taskObservers) {
 			taskObserver.posAction(task, action);
